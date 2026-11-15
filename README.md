@@ -74,7 +74,7 @@ La consulta de tareas de ejemplo necesita conexión a Internet. Las tareas perso
 
 El archivo de entrega está en:
 
-[Descargar APK de depuración](apk/GestorPersonalTareas-debug.apk)
+[Descargar APK de depuración](https://raw.githubusercontent.com/angelluissanchez25/GestorPersonalTareas/master/apk/GestorPersonalTareas-debug.apk)
 
 Para instalarlo en un emulador, arrastrar el APK hasta su pantalla y esperar a que termine la instalación. Después, abrir Gestor Personal de Tareas desde el menú de aplicaciones.
 
