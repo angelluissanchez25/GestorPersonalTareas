@@ -36,7 +36,8 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -83,7 +84,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             val scope = rememberCoroutineScope()
-            val pantallaAncha = LocalConfiguration.current.screenWidthDp >= 600
+            val anchoVentana = LocalWindowInfo.current.containerSize.width
+            val pantallaAncha = with(LocalDensity.current) { anchoVentana.toDp() >= 600.dp }
             val listaTareas = remember { mutableStateOf<List<Tarea>>(emptyList()) }
             val cargandoLista = remember { mutableStateOf(true) }
             val errorCargaLista = remember { mutableStateOf(false) }
@@ -451,10 +453,10 @@ fun MostrarTarea(
 @Composable
 fun FormularioTarea(
     guardando: Boolean,
-    tareaInicial: Tarea? = null,
     onCancelar: () -> Unit,
     onGuardar: (Tarea) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    tareaInicial: Tarea? = null
 ) {
     val titulo = rememberSaveable(tareaInicial) {
         mutableStateOf(tareaInicial?.titulo ?: "")
